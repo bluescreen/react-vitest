@@ -24,6 +24,7 @@
     "@vitest/ui": "latest",
     "c8": "^7.11.2",
     "jsdom": "latest",
+    "msw": "^0.39.2",
     "vite": "latest",
     "vitest": "latest"
   }

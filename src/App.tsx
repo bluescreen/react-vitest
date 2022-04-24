@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import logo from './logo.svg'
+import { posts } from './mocks/handlers'
+
 import './App.css'
 
 function App() {
