@@ -15,8 +15,5 @@ describe('Simple working test', () => {
     userEvent.click(screen.getByRole('button'))
     expect(await screen.findByText(/count is: 1/i)).toBeInTheDocument()
 
-    userEvent.click(screen.getByRole('button'))
-    expect(await screen.findByText(/count is: 2/i)).toBeInTheDocument()
-
   })
 })
