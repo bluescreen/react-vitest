@@ -1,6 +1,9 @@
 import { describe, expect, it } from 'vitest'
 import App from './App'
-import { render, screen, userEvent } from './util'
+
+import { act,render, screen, userEvent, queryByAttribute,waitFor } from './util'
+const getById = queryByAttribute.bind(null, 'id');
+
 
 describe('Simple working test', () => {
     
@@ -10,11 +13,22 @@ describe('Simple working test', () => {
   })
 
   it('should increment count on click', async() => {
-    render(<App />)
-    await userEvent.click(screen.getByRole('button'))
-    await userEvent.click(screen.getByRole('button'))
-    await userEvent.click(screen.getByRole('button'))
+    const {container} = render(<App />)
+    await userEvent.click(getById(container,'countButton') as HTMLElement)
+    await userEvent.click(getById(container,'countButton') as HTMLElement)
+    await userEvent.click(getById(container,'countButton') as HTMLElement)
     expect(await screen.findByText(/count is: 3/i)).toBeInTheDocument()
+
+  })
+
+  it('should fetch posts', async() => {
+  
+    const {container} = render(<App />)
+
+    userEvent.click(getById(container,'fetchButton') as HTMLElement)
+    await waitFor(() => {
+        expect(screen.getByRole('posts')).toBeInTheDocument()
+    });
 
   })
 })

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import logo from './logo.svg'
-import { posts } from './mocks/handlers'
+import fetch from 'cross-fetch'
 
 import './App.css'
 interface Post {
@@ -30,21 +30,22 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
+        <div>
+          <button type="button" id="countButton" onClick={() => setCount((count) => count + 1)}>
             count is: {count}
           </button>
-          <button type="button" onClick={() => fetchPosts()}>
-            Fetch Posts { posts.length }
+          <button type="button" id="fetchButton" onClick={() => fetchPosts()}>
+            Fetch Posts
           </button>
-          <ul>
+          {isLoading && <span id="loading">Loading...</span>}
+
+          <ul role="posts">
           { posts.map((post) => <li>{post.title}</li>)}
           </ul>
-        </p>
+        </div>
         <p>
           Edit <code>App.tsx</code> and save to test HMR updates.
         </p>
- 
       </header>
     </div>
   )
